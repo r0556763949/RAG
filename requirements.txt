@@ -1,0 +1,6 @@
+llama-index
+llama-index-embeddings-cohere
+llama-index-vector-stores-pinecone
+pinecone
+gradio
+python-dotenv
