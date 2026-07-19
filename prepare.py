@@ -35,4 +35,4 @@ def chunk_documents(documents):
 if __name__ == "__main__":
     documents = load_documents()
     nodes = chunk_documents(documents)
-    for node in nodes[:3]:
+    
