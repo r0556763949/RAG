@@ -10,7 +10,7 @@ from agent.llm import llm
 from agent.events import (
     QuestionValidatedEvent,
     RetrievedNodesEvent,
-     StructuredRouteEvent,
+    StructuredRouteEvent,
     SemanticRouteEvent,
 )
 
@@ -20,6 +20,7 @@ from agent.state import AgentState
 from agent.events import StructuredDataRetrievedEvent
 from agent.structured_retriever import retrieve_structured
 from agent.router import route_question
+
 
 class RAGWorkflow(Workflow):
     @step
@@ -49,32 +50,22 @@ class RAGWorkflow(Workflow):
 
         state = await ctx.store.get("state")
 
-        selected_route = route_question(
-            state.question
-        )
+        selected_route = route_question(state.question)
 
         state.route = selected_route
 
-        await ctx.store.set(
-            "state",
-            state
-        )
+        await ctx.store.set("state", state)
 
         print("ROUTE:", selected_route)
 
         if selected_route == "structured":
 
-            return StructuredRouteEvent(
-                question=state.question
-            )
+            return StructuredRouteEvent(question=state.question)
 
         else:
 
-            return SemanticRouteEvent(
-                question=state.question
-            )
-    
-        
+            return SemanticRouteEvent(question=state.question)
+
     @step
     async def retrieve_structured_data(
         self,
@@ -84,31 +75,17 @@ class RAGWorkflow(Workflow):
 
         state = await ctx.store.get("state")
 
-        data = retrieve_structured(
-            state.question
-        )
-
+        data = retrieve_structured(state.question)
 
         if not data:
-            return StopEvent(
-                result="No structured information found."
-            )
-
+            return StopEvent(result="No structured information found.")
 
         state.structured_data = data
 
-        await ctx.store.set(
-            "state",
-            state
-        )
+        await ctx.store.set("state", state)
 
-        print("STRUCTURED DATA:", data)
+        return StructuredDataRetrievedEvent(question=state.question, data=data)
 
-
-        return StructuredDataRetrievedEvent(
-            question=state.question,
-            data=data
-        )
     @step
     async def retrieve_documents(
         self,
@@ -142,25 +119,19 @@ class RAGWorkflow(Workflow):
 
         else:
 
-           answer = llm.complete(
-            f"""
+            answer = llm.complete(f"""
             Answer the question using this data:
 
             {state.structured_data}
 
             Question:
             {state.question}
-            """
-        )
+            """)
 
         state.answer = str(answer)
 
-        await ctx.store.set(
-            "state",
-            state
-        )
+        await ctx.store.set("state", state)
 
-        return StopEvent(
-            result=state.answer
-        )
+        return StopEvent(result=state.answer)
+
     pass
