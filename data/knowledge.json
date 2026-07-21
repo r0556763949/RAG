@@ -1,0 +1,191 @@
+{
+  "decisions": [
+    {
+      "id": "D1",
+      "title": "Project Root Level Organization",
+      "summary": "The project is organized at the root level into distinct directories for client, server, item-images service, documentation, scripts, docker configuration, and a development launcher script.",
+      "tags": [
+        "project-structure",
+        "organization"
+      ],
+      "source": {
+        "file": "README.md",
+        "section": "Root Level Organization"
+      }
+    },
+    {
+      "id": "D2",
+      "title": "Client Directory Structure",
+      "summary": "The client directory is structured into components, systems, stores, views, utils, assets, and infrastructure as code directories to separate concerns in the Vue.js frontend application.",
+      "tags": [
+        "client-structure",
+        "frontend"
+      ],
+      "source": {
+        "file": "README.md",
+        "section": "Client Structure (`client/`)"
+      }
+    },
+    {
+      "id": "D3",
+      "title": "Server Directory Structure",
+      "summary": "The server directory contains handlers, AI integration, state persistence, utilities, infrastructure as code, and tests to organize the Bun WebSocket server codebase.",
+      "tags": [
+        "server-structure",
+        "backend"
+      ],
+      "source": {
+        "file": "README.md",
+        "section": "Server Structure (`server/`)"
+      }
+    },
+    {
+      "id": "D4",
+      "title": "Item Images Service Structure",
+      "summary": "The item-images service is organized into handlers, core library, state management, and infrastructure as code directories to support AI image generation.",
+      "tags": [
+        "item-images",
+        "service-structure"
+      ],
+      "source": {
+        "file": "README.md",
+        "section": "Item Images Service (`item-images/`)"
+      }
+    },
+    {
+      "id": "D5",
+      "title": "Frontend Systems Architecture",
+      "summary": "The frontend uses a system-based architecture with independent systems communicating via events, including socket, physics, game object, and item/inventory systems.",
+      "tags": [
+        "frontend-architecture",
+        "systems",
+        "event-driven"
+      ],
+      "source": {
+        "file": "README.md",
+        "section": "Frontend Systems Architecture"
+      }
+    },
+    {
+      "id": "D6",
+      "title": "Message-Driven Communication Pattern",
+      "summary": "WebSocket messages use kebab-case naming, server handlers are organized by message type, and frontend updates are event-driven to maintain reactive state.",
+      "tags": [
+        "communication",
+        "websocket",
+        "event-driven"
+      ],
+      "source": {
+        "file": "README.md",
+        "section": "Message-Driven Communication"
+      }
+    },
+    {
+      "id": "D7",
+      "title": "Infrastructure as Code per Service",
+      "summary": "Each service contains its own iac directory with CloudFormation templates, deployment scripts, and environment-specific configurations to manage infrastructure as code.",
+      "tags": [
+        "infrastructure",
+        "iac",
+        "deployment"
+      ],
+      "source": {
+        "file": "README.md",
+        "section": "Infrastructure as Code"
+      }
+    },
+    {
+      "id": "D8",
+      "title": "Testing Structure",
+      "summary": "Server tests are located in __tests__ directories alongside source code using Bun test framework; client tests use Vitest with Vue Test Utils; test configurations are in package.json files.",
+      "tags": [
+        "testing",
+        "server",
+        "client"
+      ],
+      "source": {
+        "file": "README.md",
+        "section": "Testing Structure"
+      }
+    },
+    {
+      "id": "D9",
+      "title": "File Naming Conventions",
+      "summary": "File names, component names, and message types use kebab-case; JavaScript/TypeScript variables and functions use camelCase; Vue components and TypeScript interfaces use PascalCase; TypeScript is preferred with JavaScript for legacy word lists.",
+      "tags": [
+        "naming-conventions",
+        "coding-style"
+      ],
+      "source": {
+        "file": "README.md",
+        "section": "File Naming Conventions"
+      }
+    }
+  ],
+  "rules": [
+    {
+      "id": "R1",
+      "rule": "Use kebab-case for file names, component names, and WebSocket message types.",
+      "scope": "Entire project",
+      "source": {
+        "file": "README.md",
+        "section": "File Naming Conventions"
+      }
+    },
+    {
+      "id": "R2",
+      "rule": "Use camelCase for JavaScript and TypeScript variables and functions.",
+      "scope": "Entire project",
+      "source": {
+        "file": "README.md",
+        "section": "File Naming Conventions"
+      }
+    },
+    {
+      "id": "R3",
+      "rule": "Use PascalCase for Vue components and TypeScript interfaces.",
+      "scope": "Entire project",
+      "source": {
+        "file": "README.md",
+        "section": "File Naming Conventions"
+      }
+    },
+    {
+      "id": "R4",
+      "rule": "Organize server WebSocket message handlers by message type in kebab-case.",
+      "scope": "Server directory",
+      "source": {
+        "file": "README.md",
+        "section": "Message-Driven Communication"
+      }
+    },
+    {
+      "id": "R5",
+      "rule": "Place server tests in __tests__ directories alongside source code using Bun test framework.",
+      "scope": "Server directory",
+      "source": {
+        "file": "README.md",
+        "section": "Testing Structure"
+      }
+    },
+    {
+      "id": "R6",
+      "rule": "Use Vitest with Vue Test Utils for client tests; configure tests in package.json.",
+      "scope": "Client directory",
+      "source": {
+        "file": "README.md",
+        "section": "Testing Structure"
+      }
+    },
+    {
+      "id": "R7",
+      "rule": "Each service must have an iac directory containing CloudFormation YAML templates, deployment scripts, and environment-specific configurations.",
+      "scope": "Each service directory",
+      "source": {
+        "file": "README.md",
+        "section": "Infrastructure as Code"
+      }
+    }
+  ],
+  "warnings": []
+}
